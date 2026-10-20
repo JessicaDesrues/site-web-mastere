@@ -56,7 +56,7 @@ a { color: inherit; text-decoration: none; }
 .perfume-stage {
   position: fixed;
   z-index: 1;
-  inset: 0 0 0 34%;
+  inset: 0;
   pointer-events: none;
   overflow: hidden;
 }
@@ -65,7 +65,7 @@ a { color: inherit; text-decoration: none; }
   position: absolute;
   width: min(54vw, 760px);
   aspect-ratio: 1;
-  left: 53%;
+  left: 63%;
   top: 47%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
@@ -74,7 +74,7 @@ a { color: inherit; text-decoration: none; }
 }
 .stage-orbit {
   position: absolute;
-  left: 53%;
+  left: 63%;
   top: 47%;
   aspect-ratio: 1;
   border: 1px solid rgba(244, 210, 168, 0.11);
@@ -97,7 +97,7 @@ a { color: inherit; text-decoration: none; }
 .stage-orbit-inner::after { left: 76%; top: 87%; width: 3px; height: 3px; }
 .stage-floor {
   position: absolute;
-  left: 53%;
+  left: 63%;
   bottom: 7.5%;
   width: min(44vw, 620px);
   height: 90px;

@@ -124,7 +124,7 @@ export default function LaunchExperience() {
             >
               Une empreinte chaude, profonde, inoubliable.
               <br />
-              Nuit Rouge se révèle bientôt.
+              Nuit Rouge se révèle très bientôt.
             </motion.p>
             <motion.a
               href="#histoire"

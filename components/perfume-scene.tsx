@@ -103,7 +103,11 @@ export default function PerfumeScene({ onReady }: PerfumeSceneProps) {
     let mainFlow: ReturnType<typeof createFlowTube> | null = null;
     let leftFlow: ReturnType<typeof createFlowTube> | null = null;
     let rightFlow: ReturnType<typeof createFlowTube> | null = null;
-    const droplets: Array<{ mesh: THREE.Mesh; offset: number }> = [];
+    const droplets: Array<{
+      mesh: THREE.Mesh;
+      material: THREE.MeshPhysicalMaterial;
+      offset: number;
+    }> = [];
 
     const loader = new GLTFLoader();
     loader.load(
@@ -213,7 +217,7 @@ export default function PerfumeScene({ onReady }: PerfumeSceneProps) {
             mesh.visible = false;
             mesh.renderOrder = 2;
             product.add(mesh);
-            droplets.push({ mesh, offset: index * 0.105 });
+            droplets.push({ mesh, material: dropMaterial, offset: index * 0.105 });
           }
         }
 
@@ -275,7 +279,7 @@ export default function PerfumeScene({ onReady }: PerfumeSceneProps) {
           updateFlow(leftFlow, smoothstep(0.28, 0.72, progress), pourAmount * 0.22);
           updateFlow(rightFlow, smoothstep(0.46, 0.82, progress), pourAmount * 0.2);
 
-          droplets.forEach(({ mesh, offset }, index) => {
+          droplets.forEach(({ mesh, material, offset }, index) => {
             const travel = streamAmount * 1.24 - offset;
             const visible = pourAmount > 0.04 && travel >= 0 && travel <= 1;
             mesh.visible = visible;
@@ -283,7 +287,7 @@ export default function PerfumeScene({ onReady }: PerfumeSceneProps) {
               mesh.position.copy(pourCurve!.getPointAt(travel));
               const size = (0.022 + (index % 3) * 0.008) * (0.7 + pourAmount * 0.3);
               mesh.scale.set(size * 0.8, size * 1.25, size * 0.8);
-              mesh.material.opacity = pourAmount * 0.42;
+              material.opacity = pourAmount * 0.42;
             }
           });
         }
